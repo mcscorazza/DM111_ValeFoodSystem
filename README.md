@@ -96,7 +96,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
     "description": "string",
     "restaurantId": "string",
     "category": "string",
-    "price": float
+    "price": "float"
   }
 ]
 ```
@@ -140,7 +140,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
         "name": "string",
         "description": "string",
         "category": "string",
-        "price"; float
+        "price": "float"
       }
     ]
 }
@@ -158,7 +158,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
         "name": "string",
         "description": "string",
         "category": "string",
-        "price"; float
+        "price": "float"
       }
     ]
 }
@@ -179,7 +179,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
           "name": "string",
           "description": "string",
           "category": "string",
-          "price"; float
+          "price": "float"
         }
       ]
   }
@@ -200,7 +200,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
         "name": "string",
         "description": "string",
         "category": "string",
-        "price"; float
+        "price": "float"
       }
     ]
 }
@@ -216,7 +216,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
     "description": "string",
     "restaurantId": "string",
     "category": "string",
-    "price": float
+    "price": "float"
   }
 ]
 ```
@@ -234,7 +234,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
         "name": "string",
         "description": "string",
         "category": "string",
-        "price"; float
+        "price": "float"
       }
     ]
 }
@@ -252,7 +252,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
         "name": "string",
         "description": "string",
         "category": "string",
-        "price"; float
+        "price": "float"
       }
     ]
 }
@@ -272,7 +272,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
   "description": "string",
   "restaurantId": "string",
   "category": "string",
-  "price": float
+  "price": "float"
 }
 ```
 **Response:**
@@ -283,7 +283,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
   "description": "string",
   "restaurantId": "string",
   "category": "string",
-  "price": float
+  "price": "float"
 }
 ```
 
@@ -297,7 +297,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
     "description": "string",
     "restaurantId": "string",
     "category": "string",
-    "price": float
+    "price": "float"
   }
 ]
 ```
@@ -311,7 +311,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
   "description": "string",
   "restaurantId": "string",
   "category": "string",
-  "price": float
+  "price": "float"
 }
 ```
 
@@ -325,7 +325,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
     "description": "string",
     "restaurantId": "string",
     "category": "string",
-    "price": float
+    "price": "float"
   }
 ]
 ```
@@ -338,7 +338,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
   "description": "string",
   "restaurantId": "string",
   "category": "string",
-  "price": float
+  "price": "float"
 }
 ```
 **Response:**
@@ -349,7 +349,7 @@ Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.a
   "description": "string",
   "restaurantId": "string",
   "category": "string",
-  "price": float
+  "price": "float"
 }
 ```
 
