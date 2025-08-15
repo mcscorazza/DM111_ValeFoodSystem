@@ -1,0 +1,589 @@
+{
+	"info": {
+		"_postman_id": "f6edebf8-d515-4c1c-929b-e0e3eba959e8",
+		"name": "DM111 - ValeFood",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22531490"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Authentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"restaurantUserToken\", jsonData[\"token\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"corazza@gmail.com\",\n    \"password\": \"senha123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vfa-host}}/valefood/auth",
+							"host": [
+								"{{vfa-host}}"
+							],
+							"path": [
+								"valefood",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create regular user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"regularUserId\", jsonData[\"id\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Marcos Corazza\",\n    \"email\": \"corazza.dev@gmail.com\",\n    \"password\": \"senha123\",\n    \"type\": \"REGULAR\",\n    \"categories\": [\n        \"pizza\", \"lanche\", \"churrasco\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vfu-host}}/valefood/users",
+							"host": [
+								"{{vfu-host}}"
+							],
+							"path": [
+								"valefood",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create restaurant user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"restaurantUserId\", jsonData[\"id\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Corazza Rest\",\n    \"email\": \"corazza.restaurant.churrasco@gmail.com\",\n    \"password\": \"senha123\",\n    \"type\": \"RESTAURANT\",\n    \"categories\": [\"churrasco\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vfu-host}}/valefood/users",
+							"host": [
+								"{{vfu-host}}"
+							],
+							"path": [
+								"valefood",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJkbTExMS0yMDI1Iiwic3ViIjoiY29yYXp6YUBnbWFpbC5jb20iLCJyb2xlIjoiUkVHVUxBUiIsImlhdCI6MTc1NTExNTc5OH0.CNZbTV_-LYlYxBpxlq4xo2_7dZBA93wCDmtecjnK5iKLk9EhBf-K7qWcBCdSuRgvR1aW7hj4McWbeVP39j9AS9Il7OkYsiBknibaOkXe1OJO5Az6PArtTYP-s6gm_Zso7ViZd5WZY_6CHPkmG2giljhktAwJAg7VPo7t1_AC7882NjU3Q--mqglyrf8O8e44yyR92POvYjxCUaMh_WpgawsRCc0IhaN3rYP-iKyIIev5e6O1zmtbjtfNooCNHk32o_v98eGBqu5Mb811dvzmsenL9r-uCSXiHqxHXxFcBJcPSbMsmkxnvqQvdX4srjy3h4GJ0bcH3SyyCgaV_95QQw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{vfu-host}}/valefood/users",
+							"host": [
+								"{{vfu-host}}"
+							],
+							"path": [
+								"valefood",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{vfu-host}}/valefood/users/{{regularUserId}}",
+							"host": [
+								"{{vfu-host}}"
+							],
+							"path": [
+								"valefood",
+								"users",
+								"{{regularUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Promos by User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJkbTExMS0yMDI1Iiwic3ViIjoiY29yYXp6YUBnbWFpbC5jb20iLCJyb2xlIjoiUkVHVUxBUiIsImlhdCI6MTc1NTExNTc5OH0.CNZbTV_-LYlYxBpxlq4xo2_7dZBA93wCDmtecjnK5iKLk9EhBf-K7qWcBCdSuRgvR1aW7hj4McWbeVP39j9AS9Il7OkYsiBknibaOkXe1OJO5Az6PArtTYP-s6gm_Zso7ViZd5WZY_6CHPkmG2giljhktAwJAg7VPo7t1_AC7882NjU3Q--mqglyrf8O8e44yyR92POvYjxCUaMh_WpgawsRCc0IhaN3rYP-iKyIIev5e6O1zmtbjtfNooCNHk32o_v98eGBqu5Mb811dvzmsenL9r-uCSXiHqxHXxFcBJcPSbMsmkxnvqQvdX4srjy3h4GJ0bcH3SyyCgaV_95QQw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{vfu-host}}/valefood/users/promos/15a7205b-622e-4b28-bd47-dd9d00c8c6b7",
+							"host": [
+								"{{vfu-host}}"
+							],
+							"path": [
+								"valefood",
+								"users",
+								"promos",
+								"15a7205b-622e-4b28-bd47-dd9d00c8c6b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Marcos Eduardo Corazza\",\n    \"email\": \"corazza@gmail.com\",\n    \"password\": \"senha123\",\n    \"type\": \"REGULAR\",\n    \"categories\": [\n        \"churrasco\", \"pizza\", \"japones\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vfu-host}}/valefood/users/{{regularUserId}}",
+							"host": [
+								"{{vfu-host}}"
+							],
+							"path": [
+								"valefood",
+								"users",
+								"{{regularUserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurants",
+			"item": [
+				{
+					"name": "Create restaurant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"restaurantId\", jsonData[\"id\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "{{restaurantUserToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Marguerita\",\n    \"address\": \"Rua 123, 1000\",\n    \"userId\": \"87214974-a4b8-48b4-837a-da5105b38f79\",\n    \"categories\": [\n        \"pizza\"\n    ],\n    \"products\": [\n        {\n            \"name\": \"Marguerita\",\n            \"description\": \"Pizza de Marguerita\",\n            \"category\": \"pizza\",\n            \"price\": 55\n        },\n        {\n            \"name\": \"Quatro Queijos\",\n            \"description\": \"Pizza de Quatro Queijos\",\n            \"category\": \"Pizza\",\n            \"price\": 59\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vfr-host}}/valefood/restaurants",
+							"host": [
+								"{{vfr-host}}"
+							],
+							"path": [
+								"valefood",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List restaurants",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{restaurantUserToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "{{restaurantUserToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{vfr-host}}/valefood/restaurants",
+							"host": [
+								"{{vfr-host}}"
+							],
+							"path": [
+								"valefood",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List restaurant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{vfr-host}}/valefood/restaurants/{{restaurantId}}",
+							"host": [
+								"{{vfr-host}}"
+							],
+							"path": [
+								"valefood",
+								"restaurants",
+								"{{restaurantId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Promos by Restaurant",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJkbTExMS0yMDI1Iiwic3ViIjoiY29yYXp6YUBnbWFpbC5jb20iLCJyb2xlIjoiUkVHVUxBUiIsImlhdCI6MTc1NTExNTc5OH0.CNZbTV_-LYlYxBpxlq4xo2_7dZBA93wCDmtecjnK5iKLk9EhBf-K7qWcBCdSuRgvR1aW7hj4McWbeVP39j9AS9Il7OkYsiBknibaOkXe1OJO5Az6PArtTYP-s6gm_Zso7ViZd5WZY_6CHPkmG2giljhktAwJAg7VPo7t1_AC7882NjU3Q--mqglyrf8O8e44yyR92POvYjxCUaMh_WpgawsRCc0IhaN3rYP-iKyIIev5e6O1zmtbjtfNooCNHk32o_v98eGBqu5Mb811dvzmsenL9r-uCSXiHqxHXxFcBJcPSbMsmkxnvqQvdX4srjy3h4GJ0bcH3SyyCgaV_95QQw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{vfr-host}}/valefood/restaurants/promos/78cede90-001b-448b-8a0e-6a06a92f8eef",
+							"host": [
+								"{{vfr-host}}"
+							],
+							"path": [
+								"valefood",
+								"restaurants",
+								"promos",
+								"78cede90-001b-448b-8a0e-6a06a92f8eef"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update restaurant",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Brazuca\",\n    \"address\": \"Av. São João, 1\",\n    \"userId\": \"{{restaurantUserId}}\",\n    \"categories\": [\n        \"pizza\",\n        \"burguer\"\n    ],\n    \"products\": [\n        {\n            \"name\": \"Marguerita\",\n            \"description\": \"Pizza de Marguerita\",\n            \"category\": \"pizza\",\n            \"price\": 55\n        },\n        {\n            \"name\": \"X-Tudo\",\n            \"description\": \"X-Tudo Completo\",\n            \"category\": \"burguer\",\n            \"price\": 28\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vfr-host}}/valefood/restaurants/{{restaurantId}}",
+							"host": [
+								"{{vfr-host}}"
+							],
+							"path": [
+								"valefood",
+								"restaurants",
+								"{{restaurantId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Promo",
+			"item": [
+				{
+					"name": "Create promo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"restaurantId\", jsonData[\"id\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "{{restaurantUserToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"Promoção pizza 123\",\n        \"description\": \"Promoçao de Teste de Pizza\",\n        \"restaurantId\": \"f4d6050d-0ce4-4999-8eb3-6165912829fd\",\n        \"category\": \"pizza\",\n        \"price\": 57.9\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vfp-host}}/valefood/promos",
+							"host": [
+								"{{vfp-host}}"
+							],
+							"path": [
+								"valefood",
+								"promos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Promos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJkbTExMS0yMDI1Iiwic3ViIjoiY29yYXp6YUBnbWFpbC5jb20iLCJyb2xlIjoiUkVHVUxBUiIsImlhdCI6MTc1NTExNTc5OH0.CNZbTV_-LYlYxBpxlq4xo2_7dZBA93wCDmtecjnK5iKLk9EhBf-K7qWcBCdSuRgvR1aW7hj4McWbeVP39j9AS9Il7OkYsiBknibaOkXe1OJO5Az6PArtTYP-s6gm_Zso7ViZd5WZY_6CHPkmG2giljhktAwJAg7VPo7t1_AC7882NjU3Q--mqglyrf8O8e44yyR92POvYjxCUaMh_WpgawsRCc0IhaN3rYP-iKyIIev5e6O1zmtbjtfNooCNHk32o_v98eGBqu5Mb811dvzmsenL9r-uCSXiHqxHXxFcBJcPSbMsmkxnvqQvdX4srjy3h4GJ0bcH3SyyCgaV_95QQw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{vfp-host}}/valefood/promos",
+							"host": [
+								"{{vfp-host}}"
+							],
+							"path": [
+								"valefood",
+								"promos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Promos Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJkbTExMS0yMDI1Iiwic3ViIjoiY29yYXp6YUBnbWFpbC5jb20iLCJyb2xlIjoiUkVHVUxBUiIsImlhdCI6MTc1NTExNTc5OH0.CNZbTV_-LYlYxBpxlq4xo2_7dZBA93wCDmtecjnK5iKLk9EhBf-K7qWcBCdSuRgvR1aW7hj4McWbeVP39j9AS9Il7OkYsiBknibaOkXe1OJO5Az6PArtTYP-s6gm_Zso7ViZd5WZY_6CHPkmG2giljhktAwJAg7VPo7t1_AC7882NjU3Q--mqglyrf8O8e44yyR92POvYjxCUaMh_WpgawsRCc0IhaN3rYP-iKyIIev5e6O1zmtbjtfNooCNHk32o_v98eGBqu5Mb811dvzmsenL9r-uCSXiHqxHXxFcBJcPSbMsmkxnvqQvdX4srjy3h4GJ0bcH3SyyCgaV_95QQw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{vfp-host}}/valefood/promos/category/pizza",
+							"host": [
+								"{{vfp-host}}"
+							],
+							"path": [
+								"valefood",
+								"promos",
+								"category",
+								"pizza"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Promos Restaurant",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJkbTExMS0yMDI1Iiwic3ViIjoiY29yYXp6YUBnbWFpbC5jb20iLCJyb2xlIjoiUkVHVUxBUiIsImlhdCI6MTc1NTExNTc5OH0.CNZbTV_-LYlYxBpxlq4xo2_7dZBA93wCDmtecjnK5iKLk9EhBf-K7qWcBCdSuRgvR1aW7hj4McWbeVP39j9AS9Il7OkYsiBknibaOkXe1OJO5Az6PArtTYP-s6gm_Zso7ViZd5WZY_6CHPkmG2giljhktAwJAg7VPo7t1_AC7882NjU3Q--mqglyrf8O8e44yyR92POvYjxCUaMh_WpgawsRCc0IhaN3rYP-iKyIIev5e6O1zmtbjtfNooCNHk32o_v98eGBqu5Mb811dvzmsenL9r-uCSXiHqxHXxFcBJcPSbMsmkxnvqQvdX4srjy3h4GJ0bcH3SyyCgaV_95QQw",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{vfp-host}}/valefood/promos/restaurant/f4d6050d-0ce4-4999-8eb3-6165912829fd",
+							"host": [
+								"{{vfp-host}}"
+							],
+							"path": [
+								"valefood",
+								"promos",
+								"restaurant",
+								"f4d6050d-0ce4-4999-8eb3-6165912829fd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "vfa-host",
+			"value": "{{vfa-host}}/valefood/auth",
+			"type": "default"
+		},
+		{
+			"key": "vfu-host",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "vfp-host",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "vfr-host",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
