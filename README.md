@@ -4,7 +4,7 @@ Um mini sistema para gerenciamento de Restaurantes com usuários, promoções e 
 Esse projeto faz parte de um desenvolvimento para a disciplina DM11 da pós graduação em Cloud Computing da instituição INATEL.
 
 ## Criado por
-Marcos Corazza
+#### Marcos Corazza
 
 ## Tecnologias Utilizadas
 - **Java 17**
@@ -12,10 +12,18 @@ Marcos Corazza
 - **Maven**
 - **Firestore**
 
+## Firestore Database
+
+Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.active=local` no **application.properties** e salvar as credenciais em `service-accounts.json` dentro da pasta `\src\main\resources\`
+
+---
+
 ## Estrutura de Endpoints
 
+---
+
 ### Autenticação
-#### POST `/valefood/auth`
+##### POST `/valefood/auth`
 **Request Body:**
 ```json
 {
@@ -33,47 +41,52 @@ Marcos Corazza
 ---
 
 ### Usuários
-#### POST `/valefood/users`
+##### POST `/valefood/users`
 **Request Body:**
 ```json
 {
-  "name": "string",
-  "email": "string",
-  "password": "string"
+    "name": "string",
+    "email": "string",
+    "password": "string",
+    "type": "REGULAR|RESTAURANT",
+    "categories": ["string"]
 }
 ```
 **Response:**
 ```json
 {
-  "id": "string",
-  "name": "string",
-  "email": "string"
+    "name": "string",
+    "email": "string",
+    "type": "string",
+    "categories": ["string"]
 }
 ```
 
-#### GET `/valefood/users`
+##### GET `/valefood/users`
 **Response:**
 ```json
 [
   {
-    "id": "string",
-    "name": "string",
-    "email": "string"
+      "name": "string",
+      "email": "string",
+      "type": "string",
+      "categories": ["string"]
   }
 ]
 ```
 
-#### GET `/valefood/users/{id}`
+##### GET `/valefood/users/{id}`
 **Response:**
 ```json
 {
-  "id": "string",
-  "name": "string",
-  "email": "string"
+    "name": "string",
+    "email": "string",
+    "type": "string",
+    "categories": ["string"]
 }
 ```
 
-#### GET `/valefood/users/promos/{id}`
+##### GET `/valefood/users/promos/{id}`
 **Response:**
 ```json
 [
@@ -81,41 +94,55 @@ Marcos Corazza
     "id": "string",
     "title": "string",
     "description": "string",
+    "restaurantId": "string",
     "category": "string",
-    "restaurantId": "string"
+    "price": float
   }
 ]
 ```
 
-#### PUT `/valefood/users/{id}`
+##### PUT `/valefood/users/{id}`
 **Request Body:**
 ```json
 {
-  "name": "string",
-  "email": "string"
+    "name": "string",
+    "password": "string",
+    "type": "REGULAR|RESTAURANT",
+    "categories": ["string"]
 }
 ```
 **Response:**
 ```json
 {
-  "id": "string",
-  "name": "string",
-  "email": "string"
+    "name": "string",
+    "email": "string",
+    "type": "string",
+    "categories": ["string"]
 }
 ```
 
-#### DELETE `/valefood/users/{id}`
+##### DELETE `/valefood/users/{id}`
 **Response:** `204 No Content`
 
 ---
 
 ### Restaurantes
-#### POST `/valefood/restaurants`
+##### POST `/valefood/restaurants`
 **Request Body:**
 ```json
 {
   "name": "string",
-  "address": "string"
+  "address": "string",
+  "userId": "string",
+  "categories": ["string"],
+  "products": [
+      {
+        "name": "string",
+        "description": "string",
+        "category": "string",
+        "price"; float
+      }
+    ]
 }
 ```
 **Response:**
@@ -123,33 +150,63 @@ Marcos Corazza
 {
   "id": "string",
   "name": "string",
-  "address": "string"
+  "address": "string",
+  "userId": "string",
+  "categories": ["string"],
+  "products": [
+      {
+        "name": "string",
+        "description": "string",
+        "category": "string",
+        "price"; float
+      }
+    ]
 }
 ```
 
-#### GET `/valefood/restaurants`
+##### GET `/valefood/restaurants`
 **Response:**
 ```json
 [
   {
     "id": "string",
     "name": "string",
-    "address": "string"
+    "address": "string",
+    "userId": "string",
+    "categories": ["string"],
+    "products": [
+        {
+          "name": "string",
+          "description": "string",
+          "category": "string",
+          "price"; float
+        }
+      ]
   }
 ]
 ```
 
-#### GET `/valefood/restaurants/{id}`
+##### GET `/valefood/restaurants/{id}`
 **Response:**
 ```json
 {
   "id": "string",
   "name": "string",
-  "address": "string"
+  "address": "string",
+  "userId": "string",
+  "categories": ["string"],
+  "products": [
+      {
+        "name": "string",
+        "description": "string",
+        "category": "string",
+        "price"; float
+      }
+    ]
 }
 ```
 
-#### GET `/valefood/restaurants/promos/{id}`
+##### GET `/valefood/restaurants/promos/{id}`
 **Response:**
 ```json
 [
@@ -157,18 +214,29 @@ Marcos Corazza
     "id": "string",
     "title": "string",
     "description": "string",
+    "restaurantId": "string",
     "category": "string",
-    "restaurantId": "string"
+    "price": float
   }
 ]
 ```
 
-#### PUT `/valefood/restaurants/{id}`
+##### PUT `/valefood/restaurants/{id}`
 **Request Body:**
 ```json
 {
   "name": "string",
-  "address": "string"
+  "address": "string",
+  "userId": "string",
+  "categories": ["string"],
+  "products": [
+      {
+        "name": "string",
+        "description": "string",
+        "category": "string",
+        "price"; float
+      }
+    ]
 }
 ```
 **Response:**
@@ -176,24 +244,35 @@ Marcos Corazza
 {
   "id": "string",
   "name": "string",
-  "address": "string"
+  "address": "string",
+  "userId": "string",
+  "categories": ["string"],
+  "products": [
+      {
+        "name": "string",
+        "description": "string",
+        "category": "string",
+        "price"; float
+      }
+    ]
 }
 ```
 
-#### DELETE `/valefood/restaurants/{id}`
+##### DELETE `/valefood/restaurants/{id}`
 **Response:** `204 No Content`
 
 ---
 
 ### Promoções
-#### POST `/valefood/promos`
+##### POST `/valefood/promos`
 **Request Body:**
 ```json
 {
   "title": "string",
   "description": "string",
+  "restaurantId": "string",
   "category": "string",
-  "restaurantId": "string"
+  "price": float
 }
 ```
 **Response:**
@@ -202,12 +281,13 @@ Marcos Corazza
   "id": "string",
   "title": "string",
   "description": "string",
+  "restaurantId": "string",
   "category": "string",
-  "restaurantId": "string"
+  "price": float
 }
 ```
 
-#### GET `/valefood/promos`
+##### GET `/valefood/promos`
 **Response:**
 ```json
 [
@@ -215,25 +295,27 @@ Marcos Corazza
     "id": "string",
     "title": "string",
     "description": "string",
+    "restaurantId": "string",
     "category": "string",
-    "restaurantId": "string"
+    "price": float
   }
 ]
 ```
 
-#### GET `/valefood/promos/{id}`
+##### GET `/valefood/promos/{id}`
 **Response:**
 ```json
 {
   "id": "string",
   "title": "string",
   "description": "string",
+  "restaurantId": "string",
   "category": "string",
-  "restaurantId": "string"
+  "price": float
 }
 ```
 
-#### GET `/valefood/promos/category/{category}`
+##### GET `/valefood/promos/category/{category}`
 **Response:**
 ```json
 [
@@ -241,19 +323,22 @@ Marcos Corazza
     "id": "string",
     "title": "string",
     "description": "string",
+    "restaurantId": "string",
     "category": "string",
-    "restaurantId": "string"
+    "price": float
   }
 ]
 ```
 
-#### PUT `/valefood/promos/{id}`
+##### PUT `/valefood/promos/{id}`
 **Request Body:**
 ```json
 {
   "title": "string",
   "description": "string",
-  "category": "string"
+  "restaurantId": "string",
+  "category": "string",
+  "price": float
 }
 ```
 **Response:**
@@ -262,10 +347,11 @@ Marcos Corazza
   "id": "string",
   "title": "string",
   "description": "string",
+  "restaurantId": "string",
   "category": "string",
-  "restaurantId": "string"
+  "price": float
 }
 ```
 
-#### DELETE `/valefood/promos/{id}`
+##### DELETE `/valefood/promos/{id}`
 **Response:** `204 No Content`
