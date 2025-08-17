@@ -12,7 +12,41 @@ Esse projeto faz parte de um desenvolvimento para a disciplina DM11 da pós grad
 - **Maven**
 - **Firestore**
 
-## Firestore Database
+## Como rodar
+
+- Faça o clone do repositório em uma pasta
+```
+git clone https://github.com/mcscorazza/DM111_ValeFoodSystem.git
+```
+
+
+- Inicie o serviço de Usuários (http://localhost:8080):
+```
+cd UserService
+mvn clean spring-boot:run
+```
+
+
+- Inicie o serviço de Restaurantes (http://localhost:8081):
+```
+cd RestaurantService
+mvn clean spring-boot:run
+```
+
+
+- Inicie o serviço de Autenticação (http://localhost:8082):
+```
+cd AuthService
+mvn clean spring-boot:run
+```
+
+- Inicie o serviço de Promoções (http://localhost:8083):
+```
+cd PromoService
+mvn clean spring-boot:run
+```
+
+### Firestore Database
 
 Para utilizar o **Firestore Database** é necessário ajustar `spring.profiles.active=local` no **application.properties** e salvar as credenciais em `service-accounts.json` dentro da pasta `\src\main\resources\`
 
